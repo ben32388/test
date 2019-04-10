@@ -21,13 +21,33 @@
     <tr>
 
         <div style="text-align:center;margin-top:10px;">
-            {% for space in spaces %}
+                {% for space in spaces %}
+                <div class="btn-group dropright">
+                    <button style="background-color: transparent;border-color: transparent;padding:0px 20px 0px 20px;"
+                        class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2{{planargraph.name}}"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{ space.get_image_url }}" style=width:100px;margin:0px;>
+                        <h5 style=color:black;margin:0px;>{{space.name}}</h5>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="text-align:center;">
+                        <a class="btn dropdown-item" href="{{space.spaceId}}/"
+                            role="button">進入空間</a>
+                        <a class="btn dropdown-item" href="{{space.spaceId}}/edit/"
+                            role="button">編輯空間</a>
+                        <a class="btn dropdown-item" href="{{space.spaceId}}/delete/"
+                            role="button">刪除空間</a>
+                    </div>
+                </div>
+                {% endfor %}
+           
+           
+            <!-- {% for space in spaces %}
             <a href="{{space.spaceId}}/">
             <button type="button" style="background-color: transparent;border-color: transparen;">
                 <img src="{{ space.get_image_url }}" style=width:100px;margin:10px;>
                {{space.name| linebreaks}}
             </button>
-            {% endfor %}
+            {% endfor %} -->
         </div>
 
 

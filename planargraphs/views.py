@@ -9,6 +9,7 @@ from .forms import DeleteConfirmForm
 
 def space_show(request,pk):
     space = Space.objects.filter(planargraph_id=pk)
+
     form = SpaceForm(request.POST or None)
     pk=pk
     planargraph = Planargraph.objects.get(planargraphId=pk)
@@ -16,6 +17,28 @@ def space_show(request,pk):
         form.save()
     return render(request,'planargraphs/space_show.html', {
         'spaces' : space,'form' : form, 'pk' :pk ,'planargraphs' : planargraph
+    })
+
+def space_edit(request,spk,pk):
+    space = get_object_or_404(Space, pk=spk,planargraph=pk)
+    form = SpaceForm(request.POST or None,instance=space)
+    if form.is_valid():
+        form.save()
+        messages.success(request,'編輯成功')
+        return redirect('../../')
+    return render(request,'planargraphs/space_edit.html', {
+        'spaces' : space,'form' : form,
+    })
+
+def space_delete(request,spk,pk):
+    space = get_object_or_404(Space, pk=spk,planargraph=pk)
+    form = DeleteConfirmForm(request.POST or None)
+    if form.is_valid():
+        space.delete()
+        messages.success(request,'刪除成功')
+        return redirect('../../')
+    return render(request,'planargraphs/space_delete.html', {
+        'spaces' : space,'form' : form,
     })
 
 def space_add(request,pk):

@@ -53,16 +53,13 @@
                 <img src="/static/planargraphs/square.png" style=width:100px;margin:0px;>
                 <h5 style=color:black;margin:0px;>{{planargraph.name}}</h5>
             </button>
-            <div class="dropdown-menu"  aria-labelledby="dropdownMenu2" style="text-align:center;">
-                <a href="/planargraphs/{{planargraph.planargraphId}}/space_show/">
-                    <button class="dropdown-item" type="button">進入平面圖</button>
-                </a>
-                <a href="/planargraphs/{{planargraph.planargraphId}}/edit/">
-                    <button class="dropdown-item" type="button">編輯平面圖</button>
-                </a>
-                <a href="/planargraphs/{{planargraph.planargraphId}}/delete/">
-                    <button class="dropdown-item" type="button">刪除平面圖</button>
-                </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="text-align:center;">
+                <a class="btn dropdown-item" href="/planargraphs/{{planargraph.planargraphId}}/space_show/"
+                    role="button">進入平面圖</a>
+                <a class="btn dropdown-item" href="/planargraphs/{{planargraph.planargraphId}}/edit/"
+                    role="button">編輯平面圖</a>
+                <a class="btn dropdown-item" href="/planargraphs/{{planargraph.planargraphId}}/delete/"
+                    role="button">刪除平面圖</a>
             </div>
         </div>
         {% endfor %}

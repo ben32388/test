@@ -21,6 +21,8 @@ from planargraphs import views as planargraphs_views
 
 urlpatterns = [
     path('planargraphs/<int:pk>/space_show/', planargraphs_views.space_show),
+    path('planargraphs/<int:pk>/space_show/<int:spk>/edit/', planargraphs_views.space_edit),
+    path('planargraphs/<int:pk>/space_show/<int:spk>/delete/', planargraphs_views.space_delete),
     path('planargraphs/<int:pk>/space_show/space_add/', planargraphs_views.space_add),
     path('planargraphs/planargraph_show/', planargraphs_views.planargraph_show),
     path('planargraphs/<int:pk>/edit/', planargraphs_views.planargraph_edit),
