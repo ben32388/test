@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% load static %}
+{% block main %}
+
+<div class="row p-1 bg-dark text-white">
+    <div class="col-4 ">
+        <a class='float-left' href="/planargraphs/planargraph_show/" style="margin:2px;"><img src="/static/planargraphs/back.png"
+            style=width:40px;></a>
+    </div>
+    <div class="col-4 text-white font-weight-bold" style="display:flex;justify-content:center;align-items:center">
+        <p style="margin:0px">{{planargraphs.name}}平面圖</p>
+    </div>
+    <div class="col-4 ">
+        <a class='float-right' href="space_add/?planargraph={{pk}}" style="margin:2px;"><img src="/static/planargraphs/add.png"
+                style=width:40px;></a>
+    </div>
+</div>
+
+<div class="rol">
+    <tr>
+
+        <div style="text-align:center;margin-top:10px;">
+            {% for space in spaces %}
+            <a href="{{space.spaceId}}/">
+            <button type="button" style="background-color: transparent;border-color: transparen;">
+                <img src="{{ space.get_image_url }}" style=width:100px;margin:10px;>
+               {{space.name| linebreaks}}
+            </button>
+            {% endfor %}
+        </div>
+
+
+    </tr>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block main %}
+<div class="row p-1 bg-dark text-white">
+    <div class="col-4 ">
+        <a class='float-left' href="../" style="margin:2px;"><img
+                src="/static/planargraphs/back.png" style=width:40px;></a></div>
+    <div class="col-4 text-white font-weight-bold" style="display:flex;justify-content:center;align-items:center">
+        <p style=margin:0px;>空間</p>
+    </div>
+    <div class="col-4 "></div>
+
+</div>
+<div class="row mt-3">
+    {% for image in images %}
+    <div class="col text-center">
+        <button onclick="setImageName('{{ image.0 }}')" type="button"
+            style="background-color: transparent;border-color: transparent;" data-toggle="modal"
+            data-target="#exampleModal"><img src="/static/planargraphs/{{ image.0 }}" style=width:100px;>
+        </button>
+        <div class="modal fade mt-5" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">空間</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+
+                            {% buttons %}
+                            <button type="submit" class="btn btn-primary">送出
+                            </button>
+                            {% endbuttons %}
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<script>
+    function getOptionsOfSelect(select) {
+        var optionValues = [];
+
+        for (var i = 0; i < select.options.length; i++) {
+            optionValues.push(select.options[i].value);
+        }
+
+        return optionValues
+    }
+
+
+    function setImageName(imageNameId) {
+        var imageNameSelect = document.getElementById('id_image');
+        var options = getOptionsOfSelect(imageNameSelect);
+
+        if (options.includes(imageNameId)) {
+            imageNameSelect.value = imageNameId;
+        }
+    }
+
+    function setDefault() {
+        var url = new URL(window.location.href)
+        var planargraphId = url.searchParams.get('planargraph');
+        var planargraphSelect = document.getElementById('id_planargraph');
+        var options = getOptionsOfSelect(planargraphSelect);
+
+        if (options.includes(planargraphId)) {
+            planargraphSelect.value = planargraphId;
+        }
+    }
+
+    window.onload = setDefault;
+</script>
+{% endblock  %}
