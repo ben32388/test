@@ -13,15 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
 
+from django.urls import path
+from . import views
 
-from planargraphs import views as planargraphs_views
-
+app_name = 'planargraphs'
 urlpatterns = [
-    path('planargraphs/',include('planargraphs.urls')),
-    path('admin/', admin.site.urls),
-    
-
+    path('<int:pk>/space_show/', views.space_show, name='space_show'),
+    path('<int:pk>/space_show/<int:spk>/edit/', views.space_edit, name='space_edit'),
+    path('<int:pk>/space_show/<int:spk>/delete/', views.space_delete, name='space_delete'),
+    path('<int:pk>/space_show/space_add/', views.space_add, name='space_add'),
+    path('planargraph_show/', views.planargraph_show, name='planargraph_show'),
+    path('<int:pk>/edit/', views.planargraph_edit, name='planargraph_edit'),
+    path('<int:pk>/delete/', views.planargraph_delete, name='planargraph_delete'),
 ]

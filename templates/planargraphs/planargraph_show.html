@@ -54,11 +54,11 @@
                 <h5 style=color:black;margin:0px;>{{planargraph.name}}</h5>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="text-align:center;">
-                <a class="btn dropdown-item" href="/planargraphs/{{planargraph.planargraphId}}/space_show/"
+                <a class="btn dropdown-item" href="{% url 'planargraphs:space_show' planargraph.pk %}"
                     role="button">進入平面圖</a>
-                <a class="btn dropdown-item" href="/planargraphs/{{planargraph.planargraphId}}/edit/"
+                <a class="btn dropdown-item" href="{% url 'planargraphs:planargraph_edit' planargraph.pk %}"
                     role="button">編輯平面圖</a>
-                <a class="btn dropdown-item" href="/planargraphs/{{planargraph.planargraphId}}/delete/"
+                <a class="btn dropdown-item" href="{% url 'planargraphs:planargraph_delete' planargraph.pk %}"
                     role="button">刪除平面圖</a>
             </div>
         </div>

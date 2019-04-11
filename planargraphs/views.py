@@ -72,7 +72,7 @@ def planargraph_edit(request,pk):
     if form.is_valid():
         form.save()
         messages.success(request,'編輯成功')
-        return redirect('/planargraphs/planargraph_show/')
+        return redirect('planargraphs:planargraph_show')
     return render(request,'planargraphs/planargraph_edit.html', {
         'planargraphs' : planargraph, 'form' : form,
     })
@@ -83,7 +83,7 @@ def planargraph_delete(request,pk):
     if form.is_valid():
         planargraph.delete()
         messages.success(request,'刪除成功')
-        return redirect('/planargraphs/planargraph_show/')
+        return redirect('planargraphs:planargraph_show')
     return render(request,'planargraphs/planargraph_delete.html', {
         'planargraphs' : planargraph, 'form' : form,
     })
